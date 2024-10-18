@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PKL Live Streaming</title>
-    <!-- Video.js CSS -->
-    <link href="https://vjs.zencdn.net/7.21.0/video-js.css" rel="stylesheet"/>
+    <!-- Plyr CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -22,13 +22,6 @@
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
         }
 
-        h2 {
-            font-size: 2em;
-            color: #fff;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-        }
-
         .video-container {
             max-width: 900px;
             margin: 40px auto;
@@ -37,7 +30,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
-        .video-js {
+        .plyr {
             width: 100%;
             height: 500px;
         }
@@ -101,11 +94,7 @@
                 font-size: 2em;
             }
 
-            h2 {
-                font-size: 1.5em;
-            }
-
-            .video-js {
+            .plyr {
                 height: 300px;
             }
 
@@ -119,14 +108,13 @@
 <body>
 
     <h1>PKL Live Streaming</h1>
-    <h2> Telgu Titans vs Bengaluru Bulls</h2>
 
     <div class="video-container">
         <div id="loader">
             <div class="loader"></div>
         </div>
-        <video id="pkl-live-stream" class="video-js vjs-default-skin" controls preload="auto" autoplay muted playsinline data-setup="{}">
-            <source src="https://example.com/pkl-live.m3u8" type="application/x-mpegURL">
+        <video id="pkl-live-stream" class="plyr" playsinline controls autoplay muted>
+            <source src="https://vkvsd159.mycdn.me/hls/7358067837482.m3u8/sig/53VF5_Of_yo/expires/1729348540041/srcIp/139.84.172.25/urls/45.136.22.65/clientType/13/srcAg/CHROME/mid/8147332311850/7358067837482/video.m3u8" type="application/x-mpegURL">
             Your browser does not support HTML5 video.
         </video>
     </div>
@@ -138,23 +126,26 @@
         <p>&copy; 2024 FlickXDrive. All rights reserved.</p>
     </footer>
 
-    <!-- Video.js JS -->
-    <script src="https://vjs.zencdn.net/7.21.0/video.min.js"></script>
+    <!-- Plyr JS -->
+    <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
     <script>
+        const player = new Plyr('#pkl-live-stream', {
+            controls: ['play', 'progress', 'mute', 'volume', 'fullscreen']
+        });
+
         // Show loader while video is loading
         var loader = document.getElementById('loader');
-        var player = videojs('pkl-live-stream');
-
-        player.ready(function() {
-            loader.style.display = 'block'; // Show loader on ready
+        
+        player.on('ready', function() {
+            loader.style.display = 'none'; // Hide loader when ready
         });
 
-        player.on('loadstart', function() {
-            loader.style.display = 'block'; // Show loader when loading starts
+        player.on('play', function() {
+            loader.style.display = 'block'; // Show loader when video starts playing
         });
 
-        player.on('loadeddata', function() {
-            loader.style.display = 'none'; // Hide loader when data is loaded
+        player.on('playing', function() {
+            loader.style.display = 'none'; // Hide loader when video is playing
         });
 
         player.on('error', function() {
