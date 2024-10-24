@@ -134,18 +134,22 @@
         });
 
         // Show loader while video is loading
-        var loader = document.getElementById('loader');
+        const loader = document.getElementById('loader');
         
         player.on('ready', function() {
-            loader.style.display = 'none'; // Hide loader when ready
+            loader.style.display = 'none'; // Hide loader when video is ready
         });
 
         player.on('play', function() {
-            loader.style.display = 'block'; // Show loader when video starts playing
+            loader.style.display = 'none'; // Hide loader once video starts playing
+        });
+
+        player.on('waiting', function() {
+            loader.style.display = 'block'; // Show loader while buffering
         });
 
         player.on('playing', function() {
-            loader.style.display = 'none'; // Hide loader when video is playing
+            loader.style.display = 'none'; // Hide loader when video resumes playing
         });
 
         player.on('error', function() {
