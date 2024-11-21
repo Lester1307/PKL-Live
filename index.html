@@ -3,158 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PKL Live Streaming</title>
-    <!-- Plyr CSS -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
+    <title>Live Cricket Streaming - India vs South Africa</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.21.0/video-js.css" rel="stylesheet"/>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ff5f6d, #ffc371);
+            background: linear-gradient(to right, #1f2a44, #3a4e7b); 
+            color: #ffffff;
+            text-align: center;
             margin: 0;
             padding: 0;
-            text-align: center;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            animation: fadeInBody 2s ease-in-out;
+        }
+
+        @keyframes fadeInBody {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         h1 {
-            font-size: 3em;
-            color: #fff;
-            margin-top: 30px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            font-size: 4em;
+            margin-top: 20px;
+            color: #F39C12; /* Warm Gold */
+            font-weight: bold;
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.8); /* Softer shadow for contrast */
+            letter-spacing: 2px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #E67E22; /* Deep Orange */
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out 0.5s;
         }
 
         .video-container {
-            max-width: 900px;
-            margin: 40px auto;
-            border-radius: 10px;
+            max-width: 960px;
+            margin: auto;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+            background: #2c3e50;
+            padding: 30px;
+            border: 5px solid #F39C12;
+            position: relative;
+            animation: fadeIn 2s ease-in-out 1s;
         }
 
-        .plyr {
+        .video-js {
             width: 100%;
             height: 500px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
         }
 
         .button {
             display: inline-block;
-            background-color: #ffcc00;
-            color: #121212;
-            padding: 12px 24px;
-            border-radius: 5px;
+            background-color: #F39C12; /* Same gold tone as the header */
+            color: #1a1a1a;
+            padding: 15px 35px;
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 1.2em;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out 1.5s;
         }
 
         .button:hover {
-            background-color: #e6b800;
-        }
-
-        p {
-            font-size: 1.2em;
-            color: #fff;
-            margin-top: 20px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            background-color: #e67e22; /* A deeper gold/amber */
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(255, 165, 0, 0.7);
         }
 
         footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #f5f5f5;
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: #ffffff;
+            padding-bottom: 20px;
+            animation: fadeIn 2s ease-in-out 2s;
         }
 
-        /* Loader Styles */
-        #loader {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
+        footer a {
+            color: #F39C12;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .loader {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #3498db;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
+        footer a:hover {
+            color: #e67e22;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
+        /* Responsive Styles */
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2em;
+                font-size: 3.2em;
             }
 
-            .plyr {
-                height: 300px;
+            .video-js {
+                height: 400px;
             }
 
             .button {
-                padding: 10px 18px;
-                font-size: 1em;
+                padding: 12px 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .button {
+                padding: 10px 25px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #F39C12;
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animation for fade-in elements */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>PKL Live Streaming</h1>
+    <h1> India Vs South Africa - 4th Test Match </h1>
+    <h2> Live Streaming - Border-Gavaskar Trophy </h2>
 
     <div class="video-container">
-        <div id="loader">
-            <div class="loader"></div>
-        </div>
-        <video id="pkl-live-stream" class="plyr" playsinline controls autoplay muted>
-            <source src="https://vkvsd8.mycdn.me/hls/7222941125351.m3u8/sig/YKha7aHNV-0/srcIp/171.79.98.253/urls/45.136.20.88/expires/1730148941176/clientType/14/srcAg/CHROME_ANDROID/fromCache/1/mid/8014978427879/id/7222941125351/video.m3u8" type="application/x-mpegURL">
+        <video id="live-stream" class="video-js vjs-default-skin" controls preload="auto" autoplay muted data-setup="{}">
+            <source src="https://jcevents.jiocinema.com/bpk-tv/JC_ColorsCineplexHD/JCHLS/hdntl=exp=1731760631~acl=%2f*~id=f4c09eb8043382bb08b4d35d6ae10752~data=hdntl~hmac=0142f310e4c58f7aa86819dcfe17232206656f8ab99ba969949aef1ed43ceaed/index.m3u8" type="application/x-mpegURL">
             Your browser does not support HTML5 video.
         </video>
     </div>
 
-    <p>Click the button below to join our Telegram channel for more updates:</p>
+    <p>Join our Telegram channel for live updates:</p>
     <a href="https://t.me/+NFoX453eVVI4N2M1" class="button" target="_blank">Join Now</a>
 
     <footer>
-        <p>&copy; 2024 FlickXDrive. All rights reserved.</p>
+        <p>&copy; 2024 FlickXDrive. All rights reserved. <a href="#">Terms & Conditions</a></p>
     </footer>
 
-    <!-- Plyr JS -->
-    <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
+    <!-- Video.js JS -->
+    <script src="https://vjs.zencdn.net/7.21.0/video.min.js"></script>
     <script>
-        const player = new Plyr('#pkl-live-stream', {
-            controls: ['play', 'progress', 'mute', 'volume', 'fullscreen']
-        });
-
-        // Show loader while video is loading
-        const loader = document.getElementById('loader');
-        
-        player.on('ready', function() {
-            loader.style.display = 'none'; // Hide loader when video is ready
-        });
-
-        player.on('play', function() {
-            loader.style.display = 'none'; // Hide loader once video starts playing
-        });
-
-        player.on('waiting', function() {
-            loader.style.display = 'block'; // Show loader while buffering
-        });
-
-        player.on('playing', function() {
-            loader.style.display = 'none'; // Hide loader when video resumes playing
-        });
-
-        player.on('error', function() {
-            loader.style.display = 'none'; // Hide loader on error
-            alert('There was an error with the video stream. Please try again later.');
+        var player = videojs('live-stream');
+        player.ready(function() {
+            player.play(); // Autoplay on load
         });
     </script>
 
